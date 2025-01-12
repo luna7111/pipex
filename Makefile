@@ -6,7 +6,7 @@
 #    By: ldel-val <ldel-val@42madrid.com>          |  |           *            #
 #                                                  \  '.___.;       +          #
 #    Created: 2024/11/25 12:45:41 by ldel-val       '._  _.'   .        .      #
-#    Updated: 2025/01/11 13:40:39 by ldel-val          ``                      #
+#    Updated: 2025/01/12 20:06:10 by ldel-val          ``                      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ		:=	$(SRC:.c=.o)
 #Bonus stuff
 
 BONUS_NAME	:=	pipex_bonus
-BONUS_SRC	:=	src_bonus/pipex.c
+BONUS_SRC	:=	src/pipex.c
 BONUS_OBJ	:=	$(BONUS_SRC:.c=.o)
 
 #-----------------------------------------------------------------------------#
@@ -41,8 +41,11 @@ all: $(NAME) $(BONUS_NAME)
 $(LIBFT):
 	$(MAKE) -C libft
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) 
+
+$(BONUS_NAME): $(BONUS_OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIBFT) -o $(BONUS_NAME) 
 
 clean:
 	$(MAKE) -C libft fclean
