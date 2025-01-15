@@ -55,6 +55,7 @@ fclean:
 	$(MAKE) -C libft fclean
 	$(RM) $(OBJ)
 	$(RM) $(NAME)
+	$(RM) $(BONUS_NAME)
 
 re: fclean $(NAME)
 
