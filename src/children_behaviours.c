@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 16:30:34 by ldel-val          ``                     */
+/*   Updated: 2025/01/18 16:31:21 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,27 @@ int	start_behaviour(char *infile, char *command, char **env)
 		perror("start child error: ");
 		exit(0);
 	}
+	close(fd[STDOUT]);
+	return (fd[STDIN]);
+}
+
+int	middle_behaviour(int fd_in, char *command, char **env)
+{
+	char	**cmd_args;
+	int		fd[2];
+
+	pipe(fd);
+	if (fork() == 0)
+	{
+		close(fd[STDIN]);
+		dup2(fd_in, STDIN);
+		dup2(fd[STDOUT], STDOUT);
+		cmd_args = ft_split(command, ' ');
+		execve(command_path(cmd_args[0], env), cmd_args, env);
+		perror("middle child error: ");
+		exit(0);
+	}
+	close(fd_in);
 	close(fd[STDOUT]);
 	return (fd[STDIN]);
 }
