@@ -6,22 +6,18 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 17:10:02 by ldel-val          ``                     */
+/*   Updated: 2025/01/18 17:35:03 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-#define FIRST_CMD 2
-//Syntax: name(0) infile(1) cmd(2)...
-#define LAST_CMD 3
-//Syntax: name(0) infile(1) cmd(2) cmd1(3)...
 #define INFILE_POS 1
-//Syntax: name(0) infile(1)...
+#define FIRST_CMD 2
+#define LAST_CMD 3
 #define OUTFILE_POS 4
-//Syntax: name(0) infile(1) cmd(2) cmd1(3) outfile(4)...
 #define MIN_ARGN 5
-//Syntax: name infile cmd cmd1 outfile
+//Syntax: name(0) infile(1) cmd(2) cmd1(3) outfile(4)...
 #define ANYPID -1
 //If waitpid receives -1 instead of a real PID, it will wait for any PID
 

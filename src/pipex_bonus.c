@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    _.._  .           .     */
-/*   pipex.c                                        .' .-'`        *          */
+/*   pipex_bonus.c                                  .' .-'`        *          */
 /*                                                 /  /       +        *      */
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 16:43:58 by ldel-val          ``                     */
+/*   Updated: 2025/01/19 16:05:54 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-#define FIRST_CMD 2
-//Syntax: name(0) infile(1) cmd(2)...
 #define INFILE_POS 1
-//Syntax: name(0) infile(1)...
+#define FIRST_CMD 2
 #define MIN_ARGN 5
 //Syntax: name infile cmd cmd1 outfile
 #define HRDOC_POS 1
-//Syntax: name "here_doc"...
 #define DELIMITER_POS 2
-//Syntax: name "here_doc" DELIMITER...
 #define HRDOC_MIN_ARGN 6
 //Syntax: name "here_doc" DELIMITER cmd cmd1 outfile
 #define ANYPID -1
