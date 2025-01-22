@@ -24,6 +24,8 @@ char	*command_path(char *name, char **env)
 	char	**dir;
 	int		i;
 
+	if (access(name, X_OK) == 0)
+		return (name);
 	i = 0;
 	while (ft_strncmp(env[i], "PATH=", 5))
 		i++;
