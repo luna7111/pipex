@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 19:32:19 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 20:04:32 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	start_behaviour(char *infile, char *command, char **env)
 		dup2(fd_in, STDIN);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
+		free_strarray(cmd_args);
 		perror("");
 		exit(0);
 	}
@@ -75,6 +76,7 @@ int	middle_behaviour(int fd_in, char *command, char **env)
 		dup2(fd[STDOUT], STDOUT);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
+		free_strarray(cmd_args);
 		perror("");
 		exit(0);
 	}
@@ -95,6 +97,7 @@ void	end_behaviour(int fd_in, char *outfile, char *command, char **env)
 		dup2(fd_in, STDIN);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
+		free_strarray(cmd_args);
 		perror("");
 	}
 	close(fd_in);
