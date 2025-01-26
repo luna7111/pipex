@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 19:02:34 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 20:03:01 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*command_path(char *name, char **env)
 		}
 		i++;
 	}
+	free_strarray(dir);
 	return (NULL);
 }
