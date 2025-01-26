@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/19 16:05:54 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 19:09:47 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argn, char **argv, char **env)
 	}
 	else
 		print_error("Error. Not enough arguments.\n");
-	while (argv[arg_count + 2] && arg_count++)
+	while (arg_count++ && argv[arg_count + 2])
 		fd_in = middle_behaviour(fd_in, argv[arg_count], env);
 	end_behaviour(fd_in, argv[arg_count + 1], argv[arg_count], env);
 	while (arg_count-- >= 2)
