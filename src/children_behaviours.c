@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 20:04:32 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 21:11:46 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int	start_behaviour(char *infile, char *command, char **env)
 	pipe(fd);
 	if (fork() == 0)
 	{
-		dup2(fd[STDOUT], STDOUT);
 		fd_in = open(infile, O_RDONLY);
 		dup2(fd_in, STDIN);
+		dup2(fd[STDOUT], STDOUT);
+		close(fd[STDOUT]);
+		close(fd[STDIN]);
+		close(fd_in);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
 		free_strarray(cmd_args);
@@ -71,9 +74,11 @@ int	middle_behaviour(int fd_in, char *command, char **env)
 	pipe(fd);
 	if (fork() == 0)
 	{
-		close(fd[STDIN]);
 		dup2(fd_in, STDIN);
 		dup2(fd[STDOUT], STDOUT);
+		close(fd[STDIN]);
+		close(fd[STDOUT]);
+		close(fd_in);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
 		free_strarray(cmd_args);
@@ -95,10 +100,13 @@ void	end_behaviour(int fd_in, char *outfile, char *command, char **env)
 		fd_out = open(outfile, O_WRONLY | O_TRUNC | O_CREAT, 00644);
 		dup2(fd_out, STDOUT);
 		dup2(fd_in, STDIN);
+		close(fd_in);
+		close(fd_out);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
 		free_strarray(cmd_args);
 		perror("");
+		exit(0);
 	}
 	close(fd_in);
 }
