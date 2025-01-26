@@ -6,7 +6,7 @@
 #    By: ldel-val <ldel-val@42madrid.com>          |  |           *            #
 #                                                  \  '.___.;       +          #
 #    Created: 2024/11/25 12:45:41 by ldel-val       '._  _.'   .        .      #
-#    Updated: 2025/01/18 17:03:07 by ldel-val          ``                      #
+#    Updated: 2025/01/26 17:00:56 by ldel-val          ``                      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,6 @@ fclean:
 	$(RM) $(NAME)
 	$(RM) $(BONUS_NAME)
 
-re: fclean $(NAME)
+re: fclean $(NAME) $(BONUS_NAME)
 
 .PHONY: all clean fclean re
