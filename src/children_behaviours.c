@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 16:33:03 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 19:32:19 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	start_behaviour(char *infile, char *command, char **env)
 		dup2(fd_in, STDIN);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
-		perror("start child error: ");
+		perror("");
 		exit(0);
 	}
 	close(fd[STDOUT]);
@@ -45,12 +45,15 @@ int	here_doc_behaviour(char *delimiter)
 		ft_printf("pipe heredoc>");
 		read_line = get_next_line(STDIN);
 		write(fd[STDOUT], read_line, ft_strlen(read_line));
-		while (ft_strncmp(read_line, delimiter, ft_strlen(delimiter)))
+		while (1)
 		{
 			free(read_line);
 			ft_printf("pipe heredoc>");
 			read_line = get_next_line(STDIN);
-			write(fd[STDOUT], read_line, ft_strlen(read_line));
+			if (ft_strncmp(read_line, delimiter, ft_strlen(delimiter)))
+				write(fd[STDOUT], read_line, ft_strlen(read_line));
+			else
+				break ;
 		}
 		free(read_line);
 		exit(0);
@@ -72,7 +75,7 @@ int	middle_behaviour(int fd_in, char *command, char **env)
 		dup2(fd[STDOUT], STDOUT);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
-		perror("middle child error: ");
+		perror("");
 		exit(0);
 	}
 	close(fd_in);
@@ -92,7 +95,7 @@ void	end_behaviour(int fd_in, char *outfile, char *command, char **env)
 		dup2(fd_in, STDIN);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args[0], env), cmd_args, env);
-		perror("end child error: ");
+		perror("");
 	}
 	close(fd_in);
 }
