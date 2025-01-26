@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/23 13:15:03 by ldel-val          ``                     */
+/*   Updated: 2025/01/26 19:02:34 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_error(char *error)
 {
-	ft_printf("%s\n", error);
+	ft_dprintf(STDERR, "%s\n", error);
 	exit(-1);
 }
 
