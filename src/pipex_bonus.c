@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 19:09:47 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 16:48:36 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argn, char **argv, char **env)
 	int	fd_in;
 	int	arg_count;
 
+	arg_count = 0;
 	if (argn > 2 && !ft_strncmp(argv[HRDOC_POS], "here_doc", 8))
 	{
 		if (argn < HRDOC_MIN_ARGN)
