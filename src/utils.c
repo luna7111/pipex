@@ -6,11 +6,17 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/27 15:21:05 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 16:51:44 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
+
+void	perror_exit(char *error)
+{
+	perror(error);
+	exit(-1);
+}
 
 void	print_error(char *error)
 {
@@ -45,7 +51,8 @@ char	*command_path(char **cmd_args, char **env)
 		i++;
 	}
 	free_strarray(dir);
-	ft_dprintf(STDERR, "%s: command not found\n", cmd_args[0]);
+	write(STDERR, cmd_args[0], ft_strlen(cmd_args[0]));
+	write(STDERR, ": command not found\n", 20);
 	free_strarray(cmd_args);
 	exit(-1);
 	return (NULL);
