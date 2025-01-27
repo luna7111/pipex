@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/27 16:48:36 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 17:59:22 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #define DELIMITER_POS 2
 #define HRDOC_MIN_ARGN 6
 //Syntax: name "here_doc" DELIMITER cmd cmd1 outfile
-#define ANYPID -1
-//If waitpid receives -1 instead of a real PID, it will wait for any PID
 
 int	main(int argn, char **argv, char **env)
 {
@@ -34,7 +32,7 @@ int	main(int argn, char **argv, char **env)
 		if (argn < HRDOC_MIN_ARGN)
 			print_error("Error. Not enough arguments.\n");
 		fd_in = here_doc_behaviour(argv[DELIMITER_POS]);
-		arg_count = 3;
+		arg_count = 2;
 	}
 	else if (argn >= MIN_ARGN)
 	{
