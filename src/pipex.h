@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:46 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 17:01:06 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 15:15:07 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		middle_behaviour(int fd_in, char *command, char **env);
 void	end_behaviour(int fd_in, char *outfile, char *command, char **env);
 
 void	print_error(char *error);
-char	*command_path(char *name, char **env);
+char	*command_path(char **cmd_args, char **env);
 
 #endif

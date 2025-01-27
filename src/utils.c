@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 20:03:01 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 15:21:05 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	print_error(char *error)
 	exit(-1);
 }
 
-char	*command_path(char *name, char **env)
+char	*command_path(char **cmd_args, char **env)
 {
 	char	*file_path;
 	char	**dir;
 	int		i;
 
-	if (ft_strchr(name, '/') && access(name, X_OK) == 0)
-		return (name);
+	if (ft_strchr(cmd_args[0], '/') && access(cmd_args[0], X_OK) == 0)
+		return (cmd_args[0]);
 	i = 0;
 	while (ft_strncmp(env[i], "PATH=", 5))
 		i++;
@@ -35,7 +35,7 @@ char	*command_path(char *name, char **env)
 	while (dir[i])
 	{
 		dir[i] = ft_strappend(dir[i], "/", 1);
-		dir[i] = ft_strappend(dir[i], name, ft_strlen(name));
+		dir[i] = ft_strappend(dir[i], cmd_args[0], ft_strlen(cmd_args[0]));
 		if (access(dir[i], X_OK) == 0)
 		{
 			file_path = ft_strdup(dir[i]);
@@ -45,5 +45,8 @@ char	*command_path(char *name, char **env)
 		i++;
 	}
 	free_strarray(dir);
+	ft_dprintf(STDERR, "%s: command not found\n", cmd_args[0]);
+	free_strarray(cmd_args);
+	exit(-1);
 	return (NULL);
 }

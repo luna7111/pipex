@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 21:11:46 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 15:15:50 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	start_behaviour(char *infile, char *command, char **env)
 		close(fd[STDIN]);
 		close(fd_in);
 		cmd_args = ft_split(command, ' ');
-		execve(command_path(cmd_args[0], env), cmd_args, env);
+		execve(command_path(cmd_args, env), cmd_args, env);
 		free_strarray(cmd_args);
 		perror("");
 		exit(0);
@@ -80,7 +80,7 @@ int	middle_behaviour(int fd_in, char *command, char **env)
 		close(fd[STDOUT]);
 		close(fd_in);
 		cmd_args = ft_split(command, ' ');
-		execve(command_path(cmd_args[0], env), cmd_args, env);
+		execve(command_path(cmd_args, env), cmd_args, env);
 		free_strarray(cmd_args);
 		perror("");
 		exit(0);
@@ -103,7 +103,7 @@ void	end_behaviour(int fd_in, char *outfile, char *command, char **env)
 		close(fd_in);
 		close(fd_out);
 		cmd_args = ft_split(command, ' ');
-		execve(command_path(cmd_args[0], env), cmd_args, env);
+		execve(command_path(cmd_args, env), cmd_args, env);
 		free_strarray(cmd_args);
 		perror("");
 		exit(0);
