@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/18 17:35:03 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 17:59:53 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #define OUTFILE_POS 4
 #define MIN_ARGN 5
 //Syntax: name(0) infile(1) cmd(2) cmd1(3) outfile(4)...
-#define ANYPID -1
-//If waitpid receives -1 instead of a real PID, it will wait for any PID
 
 int	main(int argn, char **argv, char **env)
 {

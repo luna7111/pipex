@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:46 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/27 16:53:52 by ldel-val          ``                     */
+/*   Updated: 2025/01/27 17:59:43 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+
+#define ANYPID -1
+//If waitpid receives -1 instead of a real PID, it will wait for any PID
 
 int		start_behaviour(char *infile, char *command, char **env);
 int		here_doc_behaviour(char *delimiter);
