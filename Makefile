@@ -6,7 +6,7 @@
 #    By: ldel-val <ldel-val@42madrid.com>          |  |           *            #
 #                                                  \  '.___.;       +          #
 #    Created: 2024/11/25 12:45:41 by ldel-val       '._  _.'   .        .      #
-#    Updated: 2025/01/26 17:00:56 by ldel-val          ``                      #
+#    Updated: 2025/01/27 14:42:01 by ldel-val          ``                      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,10 @@ BONUS_OBJ	:=	$(BONUS_SRC:.c=.o)
 
 all: $(NAME) $(BONUS_NAME)
 
+mandatory: $(NAME)
+
+bonus: $(BONUS_NAME)
+
 $(LIBFT):
 	$(MAKE) -C libft
 
@@ -64,4 +68,4 @@ fclean:
 
 re: fclean $(NAME) $(BONUS_NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus mandatory
