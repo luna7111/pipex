@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/27 16:51:44 by ldel-val          ``                     */
+/*   Updated: 2025/01/28 14:17:52 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ void	print_error(char *error)
 	exit(-1);
 }
 
+char	**get_path_dirs(char **env)
+{
+	int		i;
+	char	**dir;
+
+	i = 0;
+	while (ft_strncmp(env[i], "PATH=", 5))
+		i++;
+	env[i] += 5;
+	dir = ft_split(env[i], ':');
+	return (dir);
+}
+
 char	*command_path(char **cmd_args, char **env)
 {
 	char	*file_path;
@@ -32,11 +45,7 @@ char	*command_path(char **cmd_args, char **env)
 
 	if (ft_strchr(cmd_args[0], '/') && access(cmd_args[0], X_OK) == 0)
 		return (cmd_args[0]);
-	i = 0;
-	while (ft_strncmp(env[i], "PATH=", 5))
-		i++;
-	env[i] += 5;
-	dir = ft_split(env[i], ':');
+	dir = get_path_dirs(env);
 	i = 0;
 	while (dir[i])
 	{
@@ -55,5 +64,4 @@ char	*command_path(char **cmd_args, char **env)
 	write(STDERR, ": command not found\n", 20);
 	free_strarray(cmd_args);
 	exit(-1);
-	return (NULL);
 }
