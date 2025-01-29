@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/29 18:34:30 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 18:42:49 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	start_behaviour(char *infile, char *command, char **env)
 		close(fd[STDOUT]);
 		close(fd[STDIN]);
 		if (fd_in == -1)
-			print_error("File does not exist");
+			print_error("Cannot open file for reading.");
 		close(fd_in);
 		cmd_args = ft_split(command, ' ');
 		execve(command_path(cmd_args, env), cmd_args, env);
