@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/29 18:57:27 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 19:32:19 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int	here_doc_behaviour(char *delimiter)
 	pipe(fd);
 	if (fork() == 0)
 	{
-		close(fd[STDIN]);
+		read_line = malloc(close(fd[STDIN]));
 		while (1)
 		{
 			free(read_line);
 			ft_printf("pipe heredoc>");
 			read_line = get_next_line(STDIN, GNL_STD);
-			if (ft_strncmp(read_line, delimiter, ft_strlen(read_line) - 1))
-				write(fd[STDOUT], read_line, ft_strlen(read_line));
-			else
-				break ;
+			if (!ft_strncmp(read_line, delimiter, ft_strlen(read_line) - 1))
+				if (ft_strlen(read_line) - 1 == ft_strlen(delimiter))
+					break ;
+			write(fd[STDOUT], read_line, ft_strlen(read_line));
 		}
 		free(read_line);
 		get_next_line(STDIN, GNL_FREE);
