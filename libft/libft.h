@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2024/10/26 15:49:52 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/26 18:58:26 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 15:55:47 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+
+# define GNL_STD 0	
+# define GNL_FREE 1
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
@@ -88,7 +91,7 @@ int		ft_putuphex_fd(size_t n, int fd);
 int		ft_puntoct_fd(int n, int fd);
 int		ft_putptr_fd(void *ptr, int fd);
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int flag);
 ssize_t	ft_read(int fd, char *buffer, size_t count);
 long	ft_find_lbreak(char *string);
 
