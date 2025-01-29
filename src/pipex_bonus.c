@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/10 16:31:37 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/27 17:59:22 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 18:58:03 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,23 @@ int	main(int argn, char **argv, char **env)
 	int	fd_in;
 	int	arg_count;
 
-	arg_count = 0;
+	arg_count = 2;
 	if (argn > 2 && !ft_strncmp(argv[HRDOC_POS], "here_doc", 8))
 	{
 		if (argn < HRDOC_MIN_ARGN)
 			print_error("Error. Not enough arguments.\n");
 		fd_in = here_doc_behaviour(argv[DELIMITER_POS]);
-		arg_count = 2;
 	}
 	else if (argn >= MIN_ARGN)
-	{
 		fd_in = start_behaviour(argv[INFILE_POS], argv[FIRST_CMD], env);
-		arg_count = 2;
-	}
 	else
 		print_error("Error. Not enough arguments.\n");
 	while (arg_count++ && argv[arg_count + 2])
 		fd_in = middle_behaviour(fd_in, argv[arg_count], env);
-	end_behaviour(fd_in, argv[arg_count + 1], argv[arg_count], env);
+	if (argn > 2 && !ft_strncmp(argv[HRDOC_POS], "here_doc", 8))
+		append_behaviour(fd_in, argv[arg_count + 1], argv[arg_count], env);
+	else
+		end_behaviour(fd_in, argv[arg_count + 1], argv[arg_count], env);
 	while (arg_count-- >= 2)
 		waitpid(ANYPID, NULL, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/29 18:42:49 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 18:57:27 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,30 @@ void	end_behaviour(int fd_in, char *outfile, char *command, char **env)
 	if (fork() == 0)
 	{
 		fd_out = open(outfile, O_WRONLY | O_TRUNC | O_CREAT, 00644);
+		dup2(fd_out, STDOUT);
+		dup2(fd_in, STDIN);
+		close(fd_out);
+		if (fd_in == -1)
+			print_error("Cannot open file for writing");
+		close(fd_in);
+		if (access(outfile, W_OK) != 0)
+			print_error("Cannot open file for writing");
+		cmd_args = ft_split(command, ' ');
+		execve(command_path(cmd_args, env), cmd_args, env);
+		free_strarray(cmd_args);
+		perror_exit("");
+	}
+	close(fd_in);
+}
+
+void	append_behaviour(int fd_in, char *outfile, char *command, char **env)
+{
+	char	**cmd_args;
+	int		fd_out;
+
+	if (fork() == 0)
+	{
+		fd_out = open(outfile, O_WRONLY | O_APPEND | O_CREAT, 00644);
 		dup2(fd_out, STDOUT);
 		dup2(fd_in, STDIN);
 		close(fd_out);
