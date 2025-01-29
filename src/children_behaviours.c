@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:27:58 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/29 16:11:15 by ldel-val          ``                     */
+/*   Updated: 2025/01/29 16:19:17 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	here_doc_behaviour(char *delimiter)
 			free(read_line);
 			ft_printf("pipe heredoc>");
 			read_line = get_next_line(STDIN, GNL_STD);
-			if (ft_strncmp(read_line, delimiter, ft_strlen(delimiter)))
+			if (ft_strncmp(read_line, delimiter, ft_strlen(read_line) - 1))
 				write(fd[STDOUT], read_line, ft_strlen(read_line));
 			else
 				break ;
