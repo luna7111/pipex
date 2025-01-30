@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/01/18 16:35:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/01/28 14:17:52 by ldel-val          ``                     */
+/*   Updated: 2025/01/30 17:33:15 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*command_path(char **cmd_args, char **env)
 		return (cmd_args[0]);
 	dir = get_path_dirs(env);
 	i = 0;
-	while (dir[i])
+	while (!ft_strchr(cmd_args[0], '/') && dir[i])
 	{
 		dir[i] = ft_strappend(dir[i], "/", 1);
 		dir[i] = ft_strappend(dir[i], cmd_args[0], ft_strlen(cmd_args[0]));
